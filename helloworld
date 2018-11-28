@@ -1,0 +1,24 @@
+package main
+
+import (
+	"fmt"
+	"github.com/devfeel/dotweb"
+)
+
+func main() {
+	//初始化DotServer
+	app := dotweb.New()
+
+	//注册hello路由
+	app.HttpServer.GET("/", func (ctx dotweb.Context) error {
+		ctx.WriteString("hello world!")
+		return nil
+	})
+	//开始服务
+	var dk int
+	fmt.Println("请输入端口号:")
+	fmt.Scan(&dk)
+	port := dk
+	err := app.StartServer(port)
+	fmt.Println("dotweb.StartServer error => ", err)
+}
